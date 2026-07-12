@@ -11,7 +11,13 @@ import {
 import { ImageIcon } from "lucide-react"
 
 export function ViewAttachmentsDialog({ attachments }: { attachments: { id: string, url: string, type: string, createdAt: Date }[] }) {
-  if (!attachments || attachments.length === 0) return null
+  if (!attachments || attachments.length === 0) {
+    return (
+      <Button variant="ghost" size="icon" disabled title="No screenshots uploaded yet">
+        <ImageIcon className="h-4 w-4 text-zinc-300" />
+      </Button>
+    )
+  }
 
   return (
     <Dialog>
