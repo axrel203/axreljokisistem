@@ -1,7 +1,7 @@
 import { prisma } from "@/lib/prisma"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { format } from "date-fns"
-import { KeyRound, ShieldAlert } from "lucide-react"
+import { ShieldAlert } from "lucide-react"
 import { CreateOrderDialog } from "@/components/create-order-dialog"
 
 export default async function AdminAccountsPage() {
