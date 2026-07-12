@@ -14,7 +14,7 @@ export default async function WorkerLayout({
     <div className="flex h-screen bg-zinc-50 text-zinc-900 selection:bg-emerald-100">
       <WorkerSidebar />
       <div className="flex flex-1 flex-col overflow-hidden relative">
-        <header className="flex h-16 md:h-20 shrink-0 items-center justify-between border-b border-zinc-200 bg-white/80 backdrop-blur-md px-4 md:px-10 z-20">
+        <header className="flex h-16 md:h-20 shrink-0 items-center justify-between border-b border-zinc-200 bg-white px-4 md:px-10 z-20">
           <div className="flex items-center">
             <MobileNav role="WORKER" />
           </div>
