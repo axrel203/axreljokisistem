@@ -16,7 +16,7 @@ export function WorkerSidebar() {
   const pathname = usePathname()
 
   return (
-    <div className="flex h-full w-72 flex-col bg-white border-r border-zinc-200 shadow-sm relative overflow-hidden">
+    <div className="hidden lg:flex h-full w-72 flex-col bg-white border-r border-zinc-200 shadow-sm relative overflow-hidden">
       <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-emerald-50/50 to-transparent pointer-events-none" />
       
       <div className="flex h-20 shrink-0 items-center px-8 border-b border-zinc-100 relative z-10">

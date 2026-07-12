@@ -21,7 +21,7 @@ export function AdminSidebar() {
   const pathname = usePathname()
 
   return (
-    <div className="flex h-full w-72 flex-col bg-white border-r border-zinc-200 shadow-sm relative overflow-hidden">
+    <div className="hidden lg:flex h-full w-72 flex-col bg-white border-r border-zinc-200 shadow-sm relative overflow-hidden">
       {/* Decorative gradient top */}
       <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-indigo-50/50 to-transparent pointer-events-none" />
       

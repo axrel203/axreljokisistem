@@ -1,6 +1,7 @@
 import { AdminSidebar } from "@/components/admin-sidebar"
 import { auth } from "@/lib/auth"
 import { NotificationBell } from "@/components/notification-bell"
+import { MobileNav } from "@/components/mobile-nav"
 
 export default async function AdminLayout({
   children,
@@ -13,11 +14,11 @@ export default async function AdminLayout({
     <div className="flex h-screen bg-zinc-50 text-zinc-900 selection:bg-indigo-100">
       <AdminSidebar />
       <div className="flex flex-1 flex-col overflow-hidden relative">
-        <header className="flex h-20 shrink-0 items-center justify-between border-b border-zinc-200 bg-white/80 backdrop-blur-md px-10 z-20">
+        <header className="flex h-16 md:h-20 shrink-0 items-center justify-between border-b border-zinc-200 bg-white/80 backdrop-blur-md px-4 md:px-10 z-20">
           <div className="flex items-center">
-            {/* Breadcrumbs or additional title can go here */}
+            <MobileNav role="ADMIN" />
           </div>
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-3 md:gap-6">
             {session?.user?.id && <NotificationBell userId={session.user.id} />}
             <div className="h-8 w-px bg-zinc-200"></div>
             <div className="flex items-center gap-3">
@@ -34,7 +35,7 @@ export default async function AdminLayout({
           </div>
         </header>
         
-        <main className="flex-1 overflow-y-auto p-10 bg-zinc-50 relative z-10">
+        <main className="flex-1 overflow-y-auto p-4 md:p-10 bg-zinc-50 relative z-10">
           {/* subtle background glow */}
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-64 bg-indigo-50 blur-[100px] rounded-full pointer-events-none" />
           <div className="relative z-10 max-w-7xl mx-auto">
