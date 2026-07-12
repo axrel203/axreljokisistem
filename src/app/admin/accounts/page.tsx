@@ -2,6 +2,7 @@ import { prisma } from "@/lib/prisma"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { format } from "date-fns"
 import { KeyRound, ShieldAlert } from "lucide-react"
+import { CreateOrderDialog } from "@/components/create-order-dialog"
 
 export default async function AdminAccountsPage() {
   const orders = await prisma.order.findMany({
@@ -17,6 +18,8 @@ export default async function AdminAccountsPage() {
     orderBy: { createdAt: "desc" }
   })
 
+  const workers = await prisma.user.findMany({ where: { role: "WORKER", isActive: true } })
+
   return (
     <div className="space-y-6">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
@@ -24,6 +27,7 @@ export default async function AdminAccountsPage() {
           <h1 className="text-2xl font-bold tracking-tight">Game Accounts</h1>
           <p className="text-zinc-500 text-sm mt-1">Daftar semua akun game dari pesanan masuk.</p>
         </div>
+        <CreateOrderDialog workers={workers} />
       </div>
 
       <div className="bg-amber-50 border border-amber-200 rounded-lg p-4 flex gap-3">
