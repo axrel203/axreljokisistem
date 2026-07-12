@@ -8,8 +8,8 @@ export default async function AdminAccountsPage() {
   const orders = await prisma.order.findMany({
     where: {
       OR: [
-        { gameUsername: { not: null, not: "" } },
-        { gamePassword: { not: null, not: "" } },
+        { gameUsername: { not: null } },
+        { gamePassword: { not: null } },
       ]
     },
     include: {
