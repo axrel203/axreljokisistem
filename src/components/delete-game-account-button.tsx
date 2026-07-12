@@ -10,7 +10,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
-import { deleteGameAccount } from "@/app/actions/orders"
+import { deleteOrder } from "@/app/actions/orders"
 import { Loader2, Trash2 } from "lucide-react"
 
 export function DeleteGameAccountButton({ orderId }: { orderId: string }) {
@@ -20,7 +20,7 @@ export function DeleteGameAccountButton({ orderId }: { orderId: string }) {
   async function handleDelete() {
     setLoading(true)
     try {
-      await deleteGameAccount(orderId)
+      await deleteOrder(orderId)
       setOpen(false)
     } catch (error) {
       console.error(error)
@@ -34,9 +34,9 @@ export function DeleteGameAccountButton({ orderId }: { orderId: string }) {
       <DialogTrigger render={<Button variant="ghost" size="icon" className="h-8 w-8 text-red-600 hover:text-red-700 hover:bg-red-50"><Trash2 className="h-4 w-4" /></Button>} />
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Hapus Akun Game</DialogTitle>
+          <DialogTitle>Hapus Pesanan</DialogTitle>
           <DialogDescription>
-            Tindakan ini akan menghapus username dan password dari pesanan ini (menjadi kosong). Apakah Anda yakin?
+            Tindakan ini akan menghapus pesanan ini secara PERMANEN dari sistem, termasuk dari halaman Worker. Apakah Anda yakin?
           </DialogDescription>
         </DialogHeader>
         <div className="flex justify-end gap-3 pt-4">

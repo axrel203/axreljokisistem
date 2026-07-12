@@ -136,27 +136,15 @@ export async function updateGameAccount(orderId: string, formData: FormData) {
   revalidatePath("/admin/orders")
 }
 
-export async function deleteGameAccount(orderId: string) {
+export async function deleteOrder(orderId: string) {
   const session = await auth()
   if (session?.user?.role !== "ADMIN") throw new Error("Unauthorized")
 
-  await prisma.order.update({
+  await prisma.order.delete({
     where: { id: orderId },
-    data: {
-      gameUsername: null,
-      gamePassword: null,
-    }
-  })
-
-  await prisma.orderLog.create({
-    data: {
-      orderId,
-      userId: session.user.id,
-      action: "ACCOUNT_DELETED",
-      details: "Game account credentials removed by Admin",
-    }
   })
 
   revalidatePath("/admin/accounts")
   revalidatePath("/admin/orders")
+  revalidatePath("/worker/orders")
 }

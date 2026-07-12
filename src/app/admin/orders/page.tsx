@@ -7,6 +7,7 @@ import { OrderStatusDropdown } from "@/components/order-status-dropdown"
 import { ViewAttachmentsDialog } from "@/components/view-attachments-dialog"
 import { ViewOrderLogDialog } from "@/components/view-order-log-dialog"
 import { ViewCredentialsDialog } from "@/components/view-credentials-dialog"
+import { DeleteGameAccountButton } from "@/components/delete-game-account-button"
 
 export default async function AdminOrdersPage() {
   const orders = await prisma.order.findMany({
@@ -63,6 +64,7 @@ export default async function AdminOrdersPage() {
                     <ViewCredentialsDialog gameUsername={order.gameUsername} gamePassword={order.gamePassword} />
                     <ViewAttachmentsDialog attachments={order.attachments} />
                     <ViewOrderLogDialog logs={order.logs} />
+                    <DeleteGameAccountButton orderId={order.id} />
                   </TableCell>
                 </TableRow>
               ))
