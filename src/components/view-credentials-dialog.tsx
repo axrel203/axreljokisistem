@@ -42,11 +42,11 @@ export function ViewCredentialsDialog({ gameUsername, gamePassword }: ViewCreden
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>
+      <DialogTrigger render={
         <Button variant="outline" size="icon" title="View Game Credentials">
           <KeyRound className="h-4 w-4 text-indigo-600" />
         </Button>
-      </DialogTrigger>
+      } />
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
           <DialogTitle>Game Account Credentials</DialogTitle>
