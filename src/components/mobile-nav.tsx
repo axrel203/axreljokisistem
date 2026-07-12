@@ -51,34 +51,34 @@ export function MobileNav({ role }: { role: "ADMIN" | "WORKER" }) {
       {/* Sidebar Panel */}
       <div 
         className={cn(
-          "fixed inset-y-0 left-0 z-50 w-72 bg-white shadow-xl transform transition-transform duration-300 ease-in-out flex flex-col",
+          "fixed top-0 left-0 bottom-0 z-50 w-64 max-w-[80vw] bg-white shadow-xl transform transition-transform duration-300 ease-in-out flex flex-col",
           isOpen ? "translate-x-0" : "-translate-x-full"
         )}
       >
-        <div className="flex items-center justify-between px-6 h-20 border-b border-zinc-100">
+        <div className="flex shrink-0 items-center justify-between px-4 h-16 border-b border-zinc-100">
           <div className="flex items-center gap-3">
-            <div className={cn("p-2 rounded-xl border", role === "ADMIN" ? "bg-indigo-100 border-indigo-200" : "bg-emerald-100 border-emerald-200")}>
+            <div className={cn("p-1.5 rounded-lg border", role === "ADMIN" ? "bg-indigo-100 border-indigo-200" : "bg-emerald-100 border-emerald-200")}>
               {role === "ADMIN" ? (
-                <ShieldCheck className="w-6 h-6 text-indigo-600" />
+                <ShieldCheck className="w-5 h-5 text-indigo-600" />
               ) : (
-                <Gamepad2 className="w-6 h-6 text-emerald-600" />
+                <Gamepad2 className="w-5 h-5 text-emerald-600" />
               )}
             </div>
-            <h1 className="text-xl font-black text-zinc-900 tracking-tight">
+            <h1 className="text-lg font-black text-zinc-900 tracking-tight">
               {role === "ADMIN" ? "AJMS" : "Worker"}
               <span className={role === "ADMIN" ? "text-indigo-600" : "text-emerald-600"}>.</span>
             </h1>
           </div>
           <button 
             onClick={() => setIsOpen(false)}
-            className="p-2 rounded-md text-zinc-500 hover:bg-zinc-100"
+            className="p-1.5 rounded-md text-zinc-500 hover:bg-zinc-100"
           >
-            <X className="h-6 w-6" />
+            <X className="h-5 w-5" />
           </button>
         </div>
 
-        <nav className="flex-1 overflow-y-auto py-6 px-4 space-y-2">
-          <div className="text-xs font-bold text-zinc-400 uppercase tracking-wider mb-2 px-4">Menu Utama</div>
+        <nav className="flex-1 overflow-y-auto py-4 px-3 space-y-1 custom-scrollbar">
+          <div className="text-[10px] font-bold text-zinc-400 uppercase tracking-wider mb-2 px-3">Menu Utama</div>
           {navigation.map((item) => {
             const isActive = pathname === item.href || (pathname.startsWith(`${item.href}/`) && item.href !== (role === "ADMIN" ? '/admin' : '/worker'))
             
@@ -88,7 +88,7 @@ export function MobileNav({ role }: { role: "ADMIN" | "WORKER" }) {
                 href={item.href}
                 onClick={() => setIsOpen(false)}
                 className={cn(
-                  "group flex items-center rounded-xl px-4 py-3 text-sm font-semibold transition-all duration-200",
+                  "group flex items-center rounded-lg px-3 py-2 text-sm font-semibold transition-all duration-200",
                   isActive
                     ? (role === "ADMIN" ? "bg-indigo-50 text-indigo-600 ring-1 ring-inset ring-indigo-100" : "bg-emerald-50 text-emerald-600 ring-1 ring-inset ring-emerald-100")
                     : "text-zinc-600 hover:bg-zinc-50 hover:text-zinc-900"
@@ -96,7 +96,7 @@ export function MobileNav({ role }: { role: "ADMIN" | "WORKER" }) {
               >
                 <item.icon
                   className={cn(
-                    "mr-3 h-5 w-5 flex-shrink-0 transition-colors",
+                    "mr-3 h-4 w-4 flex-shrink-0 transition-colors",
                     isActive ? (role === "ADMIN" ? "text-indigo-600" : "text-emerald-600") : "text-zinc-400 group-hover:text-zinc-600"
                   )}
                   aria-hidden="true"
@@ -107,10 +107,10 @@ export function MobileNav({ role }: { role: "ADMIN" | "WORKER" }) {
           })}
         </nav>
 
-        <div className="p-6 border-t border-zinc-100 bg-zinc-50">
+        <div className="p-4 shrink-0 border-t border-zinc-100 bg-zinc-50">
           <button
             onClick={() => signOut({ callbackUrl: "/login" })}
-            className="group flex w-full items-center justify-center rounded-xl px-4 py-3 text-sm font-semibold text-red-600 bg-white hover:bg-red-50 transition-all border border-red-100 shadow-sm"
+            className="group flex w-full items-center justify-center rounded-lg px-4 py-2 text-sm font-semibold text-red-600 bg-white hover:bg-red-50 transition-all border border-red-100 shadow-sm"
           >
             <LogOut className="mr-2 h-4 w-4" />
             Keluar Sistem
