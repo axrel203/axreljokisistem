@@ -107,3 +107,56 @@ export async function updateOrderStatus(orderId: string, status: string, notes?:
   revalidatePath("/admin/orders")
   revalidatePath("/worker/orders")
 }
+
+export async function updateGameAccount(orderId: string, formData: FormData) {
+  const session = await auth()
+  if (session?.user?.role !== "ADMIN") throw new Error("Unauthorized")
+
+  const gameUsername = formData.get("gameUsername") as string
+  const gamePassword = formData.get("gamePassword") as string
+
+  await prisma.order.update({
+    where: { id: orderId },
+    data: {
+      gameUsername,
+      gamePassword,
+    }
+  })
+
+  await prisma.orderLog.create({
+    data: {
+      orderId,
+      userId: session.user.id,
+      action: "ACCOUNT_UPDATED",
+      details: "Game account credentials updated by Admin",
+    }
+  })
+
+  revalidatePath("/admin/accounts")
+  revalidatePath("/admin/orders")
+}
+
+export async function deleteGameAccount(orderId: string) {
+  const session = await auth()
+  if (session?.user?.role !== "ADMIN") throw new Error("Unauthorized")
+
+  await prisma.order.update({
+    where: { id: orderId },
+    data: {
+      gameUsername: null,
+      gamePassword: null,
+    }
+  })
+
+  await prisma.orderLog.create({
+    data: {
+      orderId,
+      userId: session.user.id,
+      action: "ACCOUNT_DELETED",
+      details: "Game account credentials removed by Admin",
+    }
+  })
+
+  revalidatePath("/admin/accounts")
+  revalidatePath("/admin/orders")
+}

@@ -3,6 +3,8 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { format } from "date-fns"
 import { ShieldAlert } from "lucide-react"
 import { CreateOrderDialog } from "@/components/create-order-dialog"
+import { EditGameAccountDialog } from "@/components/edit-game-account-dialog"
+import { DeleteGameAccountButton } from "@/components/delete-game-account-button"
 
 export default async function AdminAccountsPage() {
   const orders = await prisma.order.findMany({
@@ -48,6 +50,7 @@ export default async function AdminAccountsPage() {
                 <TableHead>Username / Email / UID</TableHead>
                 <TableHead>Password</TableHead>
                 <TableHead>Pekerja (Worker)</TableHead>
+                <TableHead className="text-right">Actions</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -89,6 +92,14 @@ export default async function AdminAccountsPage() {
                           Unassigned
                         </span>
                       )}
+                    </TableCell>
+                    <TableCell className="text-right whitespace-nowrap">
+                      <EditGameAccountDialog 
+                        orderId={order.id} 
+                        currentUsername={order.gameUsername} 
+                        currentPassword={order.gamePassword} 
+                      />
+                      <DeleteGameAccountButton orderId={order.id} />
                     </TableCell>
                   </TableRow>
                 ))
