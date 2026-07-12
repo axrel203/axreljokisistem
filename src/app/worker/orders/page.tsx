@@ -8,6 +8,7 @@ import { UploadScreenshotDialog } from "@/components/upload-screenshot-dialog"
 
 import { ViewOrderLogDialog } from "@/components/view-order-log-dialog"
 import { ViewAttachmentsDialog } from "@/components/view-attachments-dialog"
+import { ViewCredentialsDialog } from "@/components/view-credentials-dialog"
 
 export default async function WorkerOrdersPage() {
   const session = await auth()
@@ -60,6 +61,7 @@ export default async function WorkerOrdersPage() {
                   </TableCell>
                   <TableCell className="text-right text-green-600 font-semibold">{formatCurrency(order.workerCommission)}</TableCell>
                   <TableCell className="text-right space-x-1 whitespace-nowrap">
+                    <ViewCredentialsDialog gameUsername={order.gameUsername} gamePassword={order.gamePassword} />
                     <UploadScreenshotDialog orderId={order.id} type="PROGRESS" />
                     <UploadScreenshotDialog orderId={order.id} type="COMPLETED" />
                     <ViewAttachmentsDialog attachments={order.attachments} />

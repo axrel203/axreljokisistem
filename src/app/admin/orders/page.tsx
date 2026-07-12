@@ -6,6 +6,7 @@ import { CreateOrderDialog } from "@/components/create-order-dialog"
 import { OrderStatusDropdown } from "@/components/order-status-dropdown"
 import { ViewAttachmentsDialog } from "@/components/view-attachments-dialog"
 import { ViewOrderLogDialog } from "@/components/view-order-log-dialog"
+import { ViewCredentialsDialog } from "@/components/view-credentials-dialog"
 
 export default async function AdminOrdersPage() {
   const orders = await prisma.order.findMany({
@@ -58,7 +59,8 @@ export default async function AdminOrdersPage() {
                   </TableCell>
                   <TableCell>{order.worker?.name || "Unassigned"}</TableCell>
                   <TableCell className="text-right">{formatCurrency(order.price)}</TableCell>
-                  <TableCell className="text-right space-x-1">
+                  <TableCell className="text-right space-x-1 whitespace-nowrap">
+                    <ViewCredentialsDialog gameUsername={order.gameUsername} gamePassword={order.gamePassword} />
                     <ViewAttachmentsDialog attachments={order.attachments} />
                     <ViewOrderLogDialog logs={order.logs} />
                   </TableCell>

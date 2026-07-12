@@ -74,6 +74,8 @@ model Order {
   customerName     String
   whatsapp         String
   description      String
+  gameUsername     String?
+  gamePassword     String?
   price            Float
   downPayment      Float        @default(0)
   remainingPayment Float        @default(0)

@@ -12,6 +12,8 @@ export async function createOrder(formData: FormData) {
   const customerName = formData.get("customerName") as string
   const whatsapp = formData.get("whatsapp") as string
   const description = formData.get("description") as string
+  const gameUsername = formData.get("gameUsername") as string
+  const gamePassword = formData.get("gamePassword") as string
   const price = parseFloat(formData.get("price") as string)
   const downPayment = parseFloat(formData.get("downPayment") as string) || 0
   const deadline = new Date(formData.get("deadline") as string)
@@ -58,6 +60,8 @@ export async function createOrder(formData: FormData) {
       customerName,
       whatsapp,
       description,
+      gameUsername,
+      gamePassword,
       price,
       downPayment,
       remainingPayment,

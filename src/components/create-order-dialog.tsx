@@ -61,6 +61,15 @@ export function CreateOrderDialog({ workers }: { workers: any[] }) {
             </div>
             
             <div className="space-y-2">
+              <Label htmlFor="gameUsername">Game Username / Email</Label>
+              <Input id="gameUsername" name="gameUsername" placeholder="Optional" disabled={loading} />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="gamePassword">Game Password</Label>
+              <Input id="gamePassword" name="gamePassword" placeholder="Optional" disabled={loading} />
+            </div>
+            
+            <div className="space-y-2">
               <Label htmlFor="workerId">Assign Worker (Optional)</Label>
               <Select name="workerId" disabled={loading}>
                 <SelectTrigger>
